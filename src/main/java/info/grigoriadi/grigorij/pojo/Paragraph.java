@@ -8,6 +8,10 @@ public class Paragraph {
 
     private boolean indent;
 
+    private boolean quote;
+
+    private Image image;
+
     public Paragraph() {
     }
 
@@ -53,5 +57,29 @@ public class Paragraph {
 
     public void setIndent(boolean indent) {
         this.indent = indent;
+    }
+
+    /**
+     * Associated image if any.
+     * @return image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    /**
+     * Is paragraph a quote.
+     * @return is quote
+     */
+    public boolean isQuote() {
+        return quote;
+    }
+
+    public void setQuote(boolean quote) {
+        this.quote = quote;
     }
 }
