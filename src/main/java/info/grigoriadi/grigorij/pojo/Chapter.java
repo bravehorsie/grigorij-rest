@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Chapter {
 
+    private String name;
+
     private List<Section> sections;
 
     private List<Image> images;
@@ -22,5 +24,13 @@ public class Chapter {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

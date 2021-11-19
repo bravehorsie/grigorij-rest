@@ -10,6 +10,7 @@ public class Section {
     private List<Paragraph> paragraphs;
 
     public Section() {
+        paragraphs = new ArrayList<>();
     }
 
     public Section(String heading) {
