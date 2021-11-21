@@ -14,7 +14,7 @@ public class ChapterServiceTest {
 
     @Test
     public void testGenerateContent() {
-        LongStream.range(1, 9).forEach(id->chapterTransformer.saveChapter(id));
+        LongStream.range(0, 9).forEach(id->chapterTransformer.saveChapter(id));
     }
 
     @Autowired
