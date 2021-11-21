@@ -10,8 +10,8 @@ public interface ChapterService {
 
     /**
      * Gets an image.
-     * @param imageId image id
+     * @param name image name
      * @return image
      */
-    byte[] getImageById(Long imageId);
+    byte[] getImageById(String name);
 }

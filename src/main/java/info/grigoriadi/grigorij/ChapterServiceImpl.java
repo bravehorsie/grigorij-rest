@@ -17,7 +17,6 @@ public class ChapterServiceImpl implements ChapterService {
     public static final String CHAPTERS_PATH = "chapters/json";
     public static final String IMAGES_PATH = "images";
     public static final String CHAPTER_SUFFIX = "json";
-    public static final String IMAGE_SUFFIX = "json";
 
     @Override
     public String getChapterById(Long id) {
@@ -34,10 +33,10 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public byte[] getImageById(Long id) {
-        final String objectName = IMAGES_PATH + "/" + id + "." + IMAGE_SUFFIX;
+    public byte[] getImageById(String name) {
+        final String objectName = IMAGES_PATH + "/" + name;
         if (!s3client.doesObjectExist(BUCKET_NAME, objectName)) {
-            throw new IllegalStateException("Object [" + id + "] does not exist!");
+            throw new IllegalStateException("Object [" + objectName + "] does not exist!");
         }
         S3Object result = s3client.getObject(BUCKET_NAME, objectName);
         try {

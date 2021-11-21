@@ -33,7 +33,7 @@ public class ChaptersEndpoint {
     }
 
     @GetMapping(value = "/images/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
+    public ResponseEntity<byte[]> getImage(@PathVariable String id) {
         return ResponseEntity.ok(chapterService.getImageById(id));
     }
 
