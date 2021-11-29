@@ -104,7 +104,7 @@ public class ChapterTransformerImpl implements ChapterTransformer {
         //get images
         chapter.getImages().addAll(extractImages(body));
 
-        File file = new File(jsonOutPath + File.separator + id + ".json");
+        File file = new File(jsonOutPath + File.separator + "json" + File.separator + id + ".json");
         try {
             mapper.writeValue(file, chapter);
         } catch (IOException e) {

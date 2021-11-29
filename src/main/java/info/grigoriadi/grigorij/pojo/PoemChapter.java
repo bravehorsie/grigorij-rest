@@ -3,19 +3,10 @@ package info.grigoriadi.grigorij.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Poem {
+public class PoemChapter {
 
     private String name;
-
-    private List<Verse> verses = new ArrayList<>();
-
-    public List<Verse> getVerses() {
-        return verses;
-    }
-
-    public void setVerses(List<Verse> verses) {
-        this.verses = verses;
-    }
+    private List<Poem> poems = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -23,5 +14,13 @@ public class Poem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Poem> getPoems() {
+        return poems;
+    }
+
+    public void setPoems(List<Poem> poems) {
+        this.poems = poems;
     }
 }
