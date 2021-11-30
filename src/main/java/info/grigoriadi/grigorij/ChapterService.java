@@ -9,6 +9,13 @@ public interface ChapterService {
     String getChapterById(Long id);
 
     /**
+     * Gets a poem.
+     * @param id id of poem
+     * @return poem
+     */
+    String getPoemById(Long id);
+
+    /**
      * Gets an image.
      * @param name image name
      * @return image
