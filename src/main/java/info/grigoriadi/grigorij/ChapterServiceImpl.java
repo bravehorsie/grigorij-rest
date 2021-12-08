@@ -3,6 +3,7 @@ package info.grigoriadi.grigorij;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -20,12 +21,14 @@ public class ChapterServiceImpl implements ChapterService {
     public static final String JSON_SUFFIX = "json";
 
     @Override
+    @Cacheable(value = "chapterCache", key = "#id")
     public String getChapterById(Long id) {
         final String objectName = CHAPTERS_PATH + "/" + id + "." + JSON_SUFFIX;
         return getS3String(objectName);
     }
 
     @Override
+    @Cacheable(value = "poemCache", key = "#id")
     public String getPoemById(Long id) {
         final String objectName = POEMS_PATH + "/" + id + "." + JSON_SUFFIX;
         return getS3String(objectName);
@@ -44,6 +47,7 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
+    @Cacheable(value = "imageCache", key = "#name")
     public byte[] getImageById(String name) {
         final String objectName = IMAGES_PATH + "/" + name;
         if (!s3client.doesObjectExist(BUCKET_NAME, objectName)) {
