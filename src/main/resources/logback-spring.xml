@@ -35,5 +35,6 @@
         </root>
     </springProfile>
 
+    <logger name="info.grigoriadi" level="DEBUG" />
 
 </configuration>
