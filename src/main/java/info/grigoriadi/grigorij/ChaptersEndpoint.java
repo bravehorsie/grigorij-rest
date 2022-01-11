@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChaptersEndpoint {
 
     private static Logger logger = LoggerFactory.getLogger(ChaptersEndpoint.class);
-
     private ChapterService chapterService;
 
     private ObjectMapper mapper;
