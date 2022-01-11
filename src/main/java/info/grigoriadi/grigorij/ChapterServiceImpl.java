@@ -2,6 +2,8 @@ package info.grigoriadi.grigorij;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
@@ -20,9 +22,12 @@ public class ChapterServiceImpl implements ChapterService {
     public static final String IMAGES_PATH = "images";
     public static final String JSON_SUFFIX = "json";
 
+    private static Logger logger = LoggerFactory.getLogger(ChapterServiceImpl.class);
+
     @Override
     @Cacheable(value = "chapterCache", key = "#id")
     public String getChapterById(Long id) {
+        logger.debug("Getting chapter id [{}]", id);
         final String objectName = CHAPTERS_PATH + "/" + id + "." + JSON_SUFFIX;
         return getS3String(objectName);
     }
@@ -30,6 +35,7 @@ public class ChapterServiceImpl implements ChapterService {
     @Override
     @Cacheable(value = "poemCache", key = "#id")
     public String getPoemById(Long id) {
+        logger.debug("Getting poem id [{}]", id);
         final String objectName = POEMS_PATH + "/" + id + "." + JSON_SUFFIX;
         return getS3String(objectName);
     }
@@ -49,6 +55,7 @@ public class ChapterServiceImpl implements ChapterService {
     @Override
     @Cacheable(value = "imageCache", key = "#name")
     public byte[] getImageById(String name) {
+        logger.debug("Getting image name [{}]", name);
         final String objectName = IMAGES_PATH + "/" + name;
         if (!s3client.doesObjectExist(BUCKET_NAME, objectName)) {
             throw new IllegalStateException("Object [" + objectName + "] does not exist!");

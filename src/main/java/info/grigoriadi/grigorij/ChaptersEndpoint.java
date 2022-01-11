@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import info.grigoriadi.grigorij.pojo.Chapter;
 import info.grigoriadi.grigorij.pojo.PoemChapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ChaptersEndpoint {
 
-    private static Logger logger = LoggerFactory.getLogger(ChaptersEndpoint.class);
     private ChapterService chapterService;
 
     private ObjectMapper mapper;
@@ -27,7 +24,6 @@ public class ChaptersEndpoint {
 
     @GetMapping(value = "/chapters/{id}", produces = "application/json")
     public ResponseEntity<Chapter> getChapter(@PathVariable Long id) {
-        logger.debug("Getting chapter id [{}]", id);
         try {
             return ResponseEntity.ok(
                     mapper.readValue(chapterService.getChapterById(id), Chapter.class)
@@ -39,7 +35,6 @@ public class ChaptersEndpoint {
 
     @GetMapping(value = "/poems/{id}", produces = "application/json")
     public ResponseEntity<PoemChapter> getPoem(@PathVariable Long id) {
-        logger.debug("Getting poem id [{}]", id);
         try {
             return ResponseEntity.ok(
                     mapper.readValue(chapterService.getPoemById(id), PoemChapter.class)
@@ -51,7 +46,6 @@ public class ChaptersEndpoint {
 
     @GetMapping(value = "/images/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> getImage(@PathVariable String id) {
-        logger.debug("Getting image id [{}]", id);
         return ResponseEntity.ok(chapterService.getImageById(id));
     }
 
